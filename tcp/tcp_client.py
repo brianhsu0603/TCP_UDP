@@ -1,4 +1,3 @@
-
 import socket
 import sys
 import time
@@ -12,18 +11,20 @@ TCP_PORT = 5000
 MESSAGE = "ping"
 
 
-id = sys.argv[1]
+def send():
 
-c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ id = sys.argv[1]
 
-c.connect((TCP_IP, TCP_PORT))
+ c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-c.send(f"{id}".encode())
+ c.connect((TCP_IP, TCP_PORT))
 
-data = c.recv(1024) 
+ c.send(f"{id}".encode())
+
+ data = c.recv(1024) 
 
 
-for x in range(0,int(sys.argv[3])):
+ for x in range(0,int(sys.argv[3])):
       
     c.send(f"{id}:{MESSAGE}".encode())
     
@@ -35,17 +36,5 @@ for x in range(0,int(sys.argv[3])):
      
     
     time.sleep(int(sys.argv[2]))
-  
-     
 
-
-
-
-    
- 
-
-     
-
-
-
-
+send()
